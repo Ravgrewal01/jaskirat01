@@ -78,3 +78,15 @@ window.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   reveals.forEach((el) => observer.observe(el));
 });
+
+
+const stickyHeader = document.querySelector(".site-header");
+
+if (stickyHeader) {
+  const updateHeaderState = () => {
+    stickyHeader.classList.toggle("is-scrolled", window.scrollY > 20);
+  };
+
+  updateHeaderState();
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+}
