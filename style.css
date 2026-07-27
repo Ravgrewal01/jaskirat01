@@ -143,21 +143,56 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
-.logo {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.01em;
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--ease) 0.25s, color var(--ease) 0.25s, border-color var(--ease) 0.25s;
+.logo{
+  width:160px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  overflow:visible;
 }
 
+.site-logo-img{
+  width:150px;
+  height:auto;
+  max-width:none;
+  display:block;
+  object-fit:contain;
+  object-position:left center;
+}
+.hero-right{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+
+.hero-right::before{
+  content: "JS";
+  position: absolute;
+  top: 8%;
+  right: -2%;
+  z-index: 0;
+
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(220px, 23vw, 380px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.09em;
+
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(35, 45, 70, 0.10);
+  pointer-events: none;
+}
+
+.hero-right img{
+  position: relative;
+  z-index: 1;
+}
 .logo:hover,
 .logo:focus-visible {
   background: var(--accent);
@@ -3073,5 +3108,166 @@ article.project.project--trailquest .img-frame img{
 
   .site-header{
     transition:none;
+  }
+}
+
+.hero-text-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) 520px;
+ gap:72px;
+ align-items:center;
+}
+.hero-left{max-width:620px}
+.hero-right{display:flex;justify-content:flex-end}
+.hero-right img{
+ width:100%;
+ max-width:520px;
+ height:720px;
+ object-fit:cover;
+ border-radius:28px;
+ background:#ececec;
+ border:2px dashed #cfcfcf;
+ box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+@media(max-width:960px){
+ .hero-text-grid{grid-template-columns:1fr}
+ .hero-right{order:-1;justify-content:center;margin-bottom:2rem}
+ .hero-right img{max-width:360px;height:500px}
+}
+
+
+/* Hero overlap fix */
+.hero{
+  min-height:auto;
+  padding-top:clamp(56px,7vw,96px);
+  padding-bottom:clamp(56px,7vw,96px);
+}
+
+.hero-text-grid{
+  grid-template-columns:minmax(0, 1fr) minmax(380px, 520px);
+  gap:clamp(48px,6vw,88px);
+  align-items:center;
+}
+
+.hero-left{
+  min-width:0;
+  max-width:680px;
+}
+
+.hero-left .headline{
+  font-size:clamp(68px,7vw,116px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  margin:0 0 34px;
+  max-width:6.5ch;
+}
+
+.hero-left .subline{
+  position:relative;
+  z-index:2;
+  margin:0 0 26px;
+  font-size:clamp(18px,1.4vw,24px);
+  line-height:1.4;
+}
+
+.hero-left .supporting{
+  max-width:580px;
+  margin:0 0 36px;
+}
+
+.hero-right img{
+  height:clamp(560px,68vh,720px);
+}
+
+@media(max-width:1100px){
+  .hero-text-grid{
+    grid-template-columns:minmax(0,1fr) minmax(320px,420px);
+    gap:42px;
+  }
+
+  .hero-left .headline{
+    font-size:clamp(62px,8vw,94px);
+  }
+}
+
+@media(max-width:900px){
+  .hero-text-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-left{
+    max-width:none;
+  }
+
+  .hero-left .headline{
+    max-width:none;
+  }
+
+  .hero-right{
+    order:2;
+  }
+
+  .hero-right img{
+    height:520px;
+    max-width:420px;
+  }
+}
+
+
+/* Remove the card background behind Jaskirat's portrait */
+.hero-right{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+
+.hero-right img{
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  object-fit:contain !important;
+  object-position:center bottom !important;
+}
+
+
+/* Make Jaskirat's portrait larger in the hero */
+.hero-text-grid{
+  grid-template-columns:minmax(0, 1fr) minmax(460px, 620px);
+  gap:clamp(48px, 6vw, 88px);
+}
+
+.hero-right img{
+  width:100% !important;
+  max-width:620px !important;
+  height:clamp(680px, 78vh, 860px) !important;
+  object-fit:contain !important;
+  object-position:center bottom !important;
+  transform:scale(1.08);
+  transform-origin:center bottom;
+}
+
+@media(max-width:1100px){
+  .hero-text-grid{
+    grid-template-columns:minmax(0, 1fr) minmax(380px, 500px);
+  }
+
+  .hero-right img{
+    max-width:500px !important;
+    height:680px !important;
+    transform:scale(1.04);
+  }
+}
+
+@media(max-width:900px){
+  .hero-text-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-right img{
+    max-width:440px !important;
+    height:560px !important;
+    transform:none;
   }
 }
